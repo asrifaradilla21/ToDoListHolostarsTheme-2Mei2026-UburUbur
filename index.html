@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List - HOLOSTARS EN Theme</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>✨ To-Do List HOLOSTARS EN ✨</h1>
+            <p class="subtitle">Stay organized and productive</p>
+        </header>
+
+        <!-- Theme Selector -->
+        <div class="theme-selector">
+            <label for="theme-select">Choose Theme:</label>
+            <select id="theme-select">
+                <option value="regis">Regis Altare</option>
+                <option value="magni">Magni Dezmond</option>
+                <option value="axel">Axel Syrios</option>
+                <option value="noir">Noir Vesper</option>
+                <option value="gavis">Gavis Bettel</option>
+                <option value="machina">Machina X Flayon</option>
+                <option value="hakka">Banzoin Hakka</option>
+                <option value="shinri">Josuiji Shinri</option>
+                <option value="jurard">Jurard T Rexford</option>
+                <option value="goldbullet">Goldbullet</option>
+                <option value="octavio">Octavio</option>
+                <option value="crimzon">Crimzon Ruze</option>
+            </select>
+        </div>
+
+        <main class="main-content">
+            <!-- Input Section -->
+            <section class="input-section">
+                <h2>Add New Task</h2>
+                <form id="task-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="task-name">Task Name *</label>
+                            <input type="text" id="task-name" placeholder="Enter task name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="task-category">Category *</label>
+                            <select id="task-category" required>
+                                <option value="">Select Category</option>
+                                <option value="Work">Work</option>
+                                <option value="Class">Class</option>
+                                <option value="Homework">Homework</option>
+                                <option value="Holiday">Holiday</option>
+                                <option value="Fun">Fun</option>
+                                <option value="Personal">Personal</option>
+                                <option value="Home">Home</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="task-priority">Priority *</label>
+                            <select id="task-priority" required>
+                                <option value="">Select Priority</option>
+                                <option value="1">Urgent & Important</option>
+                                <option value="2">Important (Not Urgent)</option>
+                                <option value="3">Urgent (Not Important)</option>
+                                <option value="4">Neither</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="task-deadline">Deadline *</label>
+                            <input type="datetime-local" id="task-deadline" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="task-duration">Estimated Duration (minutes) *</label>
+                            <input type="number" id="task-duration" placeholder="e.g., 30" min="1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="task-notification">Notification Type</label>
+                            <select id="task-notification">
+                                <option value="none">None</option>
+                                <option value="clock">Clock Reminder</option>
+                                <option value="message">Message</option>
+                                <option value="email">Email Notification</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="task-notes">Additional Notes</label>
+                        <textarea id="task-notes" placeholder="Add any additional details..." rows="3"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-add">Add Task</button>
+                </form>
+            </section>
+
+            <!-- Filters and Sorting -->
+            <section class="controls-section">
+                <h2>Task Controls</h2>
+                <div class="controls">
+                    <div class="filter-group">
+                        <label for="filter-category">Filter by Category:</label>
+                        <select id="filter-category">
+                            <option value="">All Categories</option>
+                            <option value="Work">Work</option>
+                            <option value="Class">Class</option>
+                            <option value="Homework">Homework</option>
+                            <option value="Holiday">Holiday</option>
+                            <option value="Fun">Fun</option>
+                            <option value="Personal">Personal</option>
+                            <option value="Home">Home</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="filter-status">Filter by Status:</label>
+                        <select id="filter-status">
+                            <option value="">All Tasks</option>
+                            <option value="active">Active</option>
+                            <option value="completed">Completed</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="sort-by">Sort by:</label>
+                        <select id="sort-by">
+                            <option value="priority">Priority</option>
+                            <option value="deadline">Deadline</option>
+                            <option value="duration">Duration</option>
+                            <option value="name">Name (A-Z)</option>
+                        </select>
+                    </div>
+
+                    <button id="clear-completed" class="btn btn-secondary">Clear Completed</button>
+                </div>
+            </section>
+
+            <!-- Task List Section -->
+            <section class="task-list-section">
+                <h2>Your Tasks</h2>
+                <div id="task-list" class="task-list">
+                    <p class="empty-state">No tasks yet. Add one to get started! 🚀</p>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2026 To-Do List HOLOSTARS EN Theme | Stay Productive! ✨</p>
+        </footer>
+    </div>
+
+    <!-- Task Item Template (hidden) -->
+    <template id="task-template">
+        <div class="task-item" data-task-id="">
+            <div class="task-header">
+                <div class="task-checkbox-wrapper">
+                    <input type="checkbox" class="task-checkbox" aria-label="Mark task as complete">
+                </div>
+                <div class="task-info">
+                    <h3 class="task-name"></h3>
+                    <div class="task-meta">
+                        <span class="task-category"></span>
+                        <span class="task-priority"></span>
+                    </div>
+                </div>
+                <button class="btn btn-delete" aria-label="Delete task">×</button>
+            </div>
+            <div class="task-details">
+                <p><strong>Deadline:</strong> <span class="task-deadline"></span></p>
+                <p><strong>Duration:</strong> <span class="task-duration"></span> minutes</p>
+                <p class="task-notes-display" style="display: none;"><strong>Notes:</strong> <span class="task-notes"></span></p>
+                <p class="task-notification-display" style="display: none;"><strong>Notification:</strong> <span class="task-notification"></span></p>
+            </div>
+        </div>
+    </template>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
